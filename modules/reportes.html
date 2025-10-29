@@ -1,0 +1,92 @@
+<!-- Módulo de Reportes -->
+<div id="moduloReportes" class="modulo-container modulo-activo">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="modulo-titulo">📊 Reportes y Gráficos</h4>
+      
+      <!-- Selectores para reportes -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-4">
+          <label class="form-label">Tipo de Reporte:</label>
+          <select class="form-select" id="tipoReporte">
+            <option value="asistenciaMensual">Asistencia por Mes</option>
+            <option value="apoyoEstudiantil">Apoyo Estudiantil</option>
+            <option value="aprobadosReprobados">Aprobados vs Reprobados</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Grupo:</label>
+          <select class="form-select" id="grupoReporte">
+            <option value="0">Grupo A</option>
+            <option value="1">Grupo B</option>
+            <option value="2">Grupo C</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Materia:</label>
+          <select class="form-select" id="materiaReporte">
+            <option value="0">Metodologías</option>
+            <option value="1">Backend1</option>
+            <option value="2">Front1</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Filtros específicos por tipo de reporte -->
+      <div id="filtrosEspecificos">
+        <!-- Filtros para Asistencia por Mes -->
+        <div id="filtrosAsistencia" class="filtros-container" style="display: none;">
+          <h5>Filtros de Fecha</h5>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label">Fecha Inicial:</label>
+              <input type="date" class="form-control" id="fechaInicial">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Fecha Final:</label>
+              <input type="date" class="form-control" id="fechaFinal">
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+              <button type="button" class="btn btn-primary w-100" id="btnGenerarAsistencia">
+                Generar Reporte de Asistencia
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filtros para Apoyo Estudiantil -->
+        <div id="filtrosApoyo" class="filtros-container" style="display: none;">
+          <h5>Reporte de Apoyo Estudiantil</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <p>Este reporte muestra la distribución de estudiantes por tipo de apoyo estudiantil.</p>
+              <button type="button" class="btn btn-primary" id="btnGenerarApoyo">
+                Generar Reporte de Apoyo Estudiantil
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filtros para Aprobados vs Reprobados -->
+        <div id="filtrosAprobados" class="filtros-container" style="display: none;">
+          <h5>Reporte de Aprobados vs Reprobados</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <p>Este reporte muestra la cantidad de estudiantes aprobados y reprobados en la materia seleccionada.</p>
+              <button type="button" class="btn btn-primary" id="btnGenerarAprobados">
+                Generar Reporte de Aprobados/Reprobados
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor de gráficos -->
+      <div id="contenedorGraficos" class="mt-4">
+        <div class="alert alert-info text-center">
+          <h5>Selecciona un tipo de reporte y haz clic en el botón correspondiente para generar el gráfico</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

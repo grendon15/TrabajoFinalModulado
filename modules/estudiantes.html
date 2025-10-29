@@ -1,0 +1,41 @@
+<!-- Módulo de Estudiantes -->
+<div id="moduloEstudiantes" class="modulo-container modulo-activo">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="modulo-titulo">👥 Gestión de Estudiantes</h4>
+      
+      <!-- Formulario para agregar / editar estudiantes -->
+      <div class="card mt-4">
+        <div class="card-body">
+          <h5 class="card-title" id="formEstudiantesTitulo">Agregar Estudiante</h5>
+          <form id="formEstudiante">
+            <input type="hidden" id="editEstudianteIndex" value="-1">
+            <div class="row g-2 mb-2">
+              <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="Identificación" id="identificacion" required>
+              </div>
+              <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="Nombre del Estudiante" id="nombreEstudiante" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" required>
+              </div>
+              <div class="col-md-3">
+                <select class="form-control" id="apoyoEstudiantil" required>
+                  <option value="">Seleccione apoyo estudiantil</option>
+                  <option value="Matricula Cero">Matrícula Cero</option>
+                  <option value="Viejitos activos">Viejitos activos</option>
+                  <option value="Niños en progreso">Niños en progreso</option>
+                  <option value="Los amantes al salchichon">Los amantes al salchichón</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <button type="submit" class="btn btn-success w-100">Guardar Estudiante</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Lista de estudiantes -->
+      <div id="listaEstudiantes" class="mt-4"></div>
+    </div>
+  </div>
+</div>
