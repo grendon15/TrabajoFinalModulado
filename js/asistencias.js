@@ -14,6 +14,7 @@ function mostrarFormularioAsistencias() {
   const contenedor = document.getElementById("tablaAsistencias");
   const grupo = data[grupoActual];
   
+  // Validar si hay estudiantes sino muestra mensaje que no hay
   if (grupo.estudiantes.length === 0) {
     contenedor.innerHTML = `
       <div class="alert alert-info">
@@ -55,6 +56,7 @@ function mostrarFormularioAsistencias() {
   contenedor.innerHTML = html;
 }
 
+//Validar fecha no futura
 function guardarAsistencias() {
   const fecha = document.getElementById("fechaAsistencia").value;
   if (!fecha) {
@@ -102,7 +104,7 @@ function guardarAsistencias() {
   } else {
     materia.asistencias.push(registroAsistencias);
   }
-  
+  //Mensaje de asistencias guardadas
   Swal.fire({ title: "Guardado", text: "Asistencias guardadas correctamente", icon: "success" });
 }
 

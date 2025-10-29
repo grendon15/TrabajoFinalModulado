@@ -19,107 +19,213 @@
   <link rel="stylesheet" href="styles/notas.css">
   <link rel="stylesheet" href="styles/asistencias.css">
   <link rel="stylesheet" href="styles/reportes.css">
+  
+  <style>
+    /* Estilos para header y footer con el mismo color */
+    .colorPrincipal {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%) !important;
+    }
+    
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding-top: 76px; /* Compensa el header fijo */
+    }
+    
+    .main-content {
+      flex: 1;
+    }
+    
+    .footer-icon {
+      transition: transform 0.3s ease;
+    }
+    
+    .footer-icon:hover {
+      transform: scale(1.2);
+      color: #a8d8ff !important;
+    }
+
+    /* Asegurar que los enlaces del footer sean visibles */
+    .colorPrincipal a {
+      color: white !important;
+      text-decoration: none;
+    }
+
+    .colorPrincipal a:hover {
+      color: #a8d8ff !important;
+    }
+
+    /* Mejorar la legibilidad del footer */
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
-<body class="container py-4">
-
-  <h2 class="text-center mb-4">📚 Sistema Académico</h2>
-
-  <!-- Información de selección actual -->
-  <div id="seleccionInfo" class="seleccion-info text-center">
-    <h4 id="infoGrupoMateria">Selecciona un grupo y una materia para comenzar</h4>
-  </div>
-
-  <!-- Botones de grupos -->
-  <div id="grupos" class="text-center mb-4"></div>
-
-  <!-- Materias -->
-  <div id="materias" class="row g-3"></div>
-
-  <!-- Botones de módulos -->
-  <div id="modulos" class="botones-modulos-container">
-    <h4 class="text-center mb-4 modulo-titulo">Secciones de Trabajo</h4>
-    <div class="row g-3 justify-content-center">
-      <div class="col-md-3">
-        <button class="btn btn-success btn-modulo w-100 h-100" id="btnEstudiantes">
-          <i class="bi bi-people-fill display-4 mb-2"></i><br>
-          <strong>Gestión de Estudiantes</strong><br>
-          <small>Registrar y administrar estudiantes</small>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar navbar-expand-lg colorPrincipal navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">
+          <i class="bi bi-journal-bookmark-fill me-2"></i>ClassRoomApp
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">
+                <i class="bi bi-house-door me-1"></i>Inicio
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="bi bi-info-circle me-1"></i>Acerca de
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="bi bi-telephone me-1"></i>Contacto
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="col-md-3">
-        <button class="btn btn-primary btn-modulo w-100 h-100" id="btnNotas">
-          <i class="bi bi-journal-text display-4 mb-2"></i><br>
-          <strong>Gestión de Notas</strong><br>
-          <small>Asignar y editar calificaciones</small>
-        </button>
-      </div>
-      <div class="col-md-3">
-        <button class="btn btn-info btn-modulo w-100 h-100" id="btnAsistencias">
-          <i class="bi bi-clipboard-check display-4 mb-2"></i><br>
-          <strong>Gestión de Asistencias</strong><br>
-          <small>Registrar y consultar asistencia</small>
-        </button>
-      </div>
-      <div class="col-md-3">
-        <button class="btn btn-warning btn-modulo w-100 h-100" id="btnReportes">
-          <i class="bi bi-bar-chart-fill display-4 mb-2"></i><br>
-          <strong>Reportes y Gráficos</strong><br>
-          <small>Generar reportes estadísticos</small>
-        </button>
-      </div>
+    </nav>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="main-content container py-4">
+    <h2 class="text-center mb-4">📚 Sistema Académico</h2>
+
+    <!-- Información de selección actual -->
+    <div id="seleccionInfo" class="seleccion-info text-center">
+      <h4 id="infoGrupoMateria">Selecciona un grupo y una materia para comenzar</h4>
     </div>
-  </div>
 
-  <!-- Contenedor para módulos dinámicos -->
-  <div id="moduloContainer"></div>
+    <!-- Botones de grupos -->
+    <div id="grupos" class="text-center mb-4"></div>
 
-  <!-- Modales comunes -->
-  <div class="modal fade" id="modalAsistencias" tabindex="-1" aria-labelledby="modalAsistenciasLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalAsistenciasLabel">Registros de Asistencia</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="modalAsistenciasBody"></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
+    <!-- Materias -->
+    <div id="materias" class="row g-3"></div>
 
-  <div class="modal fade" id="modalEditarAsistencia" tabindex="-1" aria-labelledby="modalEditarAsistenciaLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalEditarAsistenciaLabel">Editar Asistencia</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Botones de módulos -->
+    <div id="modulos" class="botones-modulos-container">
+      <h4 class="text-center mb-4 modulo-titulo">Secciones de Trabajo</h4>
+      <div class="row g-3 justify-content-center">
+        <div class="col-md-3">
+          <button class="btn btn-success btn-modulo w-100 h-100" id="btnEstudiantes">
+            <i class="bi bi-people-fill display-4 mb-2"></i><br>
+            <strong>Gestión de Estudiantes</strong><br>
+            <small>Registrar y administrar estudiantes</small>
+          </button>
         </div>
-        <div class="modal-body" id="modalEditarAsistenciaBody"></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" id="btnActualizarAsistencia">Actualizar Asistencia</button>
+        <div class="col-md-3">
+          <button class="btn btn-primary btn-modulo w-100 h-100" id="btnNotas">
+            <i class="bi bi-journal-text display-4 mb-2"></i><br>
+            <strong>Gestión de Notas</strong><br>
+            <small>Asignar y editar calificaciones</small>
+          </button>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="modalNotas" tabindex="-1" aria-labelledby="modalNotasLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalNotasLabel">Gestión de Notas</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="col-md-3">
+          <button class="btn btn-info btn-modulo w-100 h-100" id="btnAsistencias">
+            <i class="bi bi-clipboard-check display-4 mb-2"></i><br>
+            <strong>Gestión de Asistencias</strong><br>
+            <small>Registrar y consultar asistencia</small>
+          </button>
         </div>
-        <div class="modal-body" id="modalNotasBody"></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" id="btnGuardarNotas">Guardar Notas</button>
+        <div class="col-md-3">
+          <button class="btn btn-warning btn-modulo w-100 h-100" id="btnReportes">
+            <i class="bi bi-bar-chart-fill display-4 mb-2"></i><br>
+            <strong>Reportes y Gráficos</strong><br>
+            <small>Generar reportes estadísticos</small>
+          </button>
         </div>
       </div>
     </div>
-  </div>
+
+    <!-- Contenedor para módulos dinámicos -->
+    <div id="moduloContainer"></div>
+
+    <!-- Modales comunes -->
+    <div class="modal fade" id="modalAsistencias" tabindex="-1" aria-labelledby="modalAsistenciasLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalAsistenciasLabel">Registros de Asistencia</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modalAsistenciasBody"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalEditarAsistencia" tabindex="-1" aria-labelledby="modalEditarAsistenciaLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalEditarAsistenciaLabel">Editar Asistencia</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modalEditarAsistenciaBody"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="btnActualizarAsistencia">Actualizar Asistencia</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalNotas" tabindex="-1" aria-labelledby="modalNotasLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalNotasLabel">Gestión de Notas</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modalNotasBody"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="btnGuardarNotas">Guardar Notas</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="colorPrincipal text-white py-4 mt-5">
+    <div class="container-fluid">
+      <div class="row footer-content">
+        <div class="col-12 col-md-6 text-center text-md-end mb-4 mb-md-0">
+          <h3 class="mb-3"><i class="bi bi-journal-bookmark-fill me-2"></i>Class Room App</h3>
+          <p class="mb-0">Una aplicación completa para la gestión académica que permite administrar estudiantes, calificaciones, asistencias y generar reportes detallados.</p>
+        </div>
+        <div class="col-12 col-md-6 text-center text-md-start ps-md-4 border-start border-light border-opacity-25">
+          <h5 class="mb-2">&copy; 2024 Todos los derechos reservados</h5>
+          <h5 class="mb-4">Proyecto Integrador Nivel 2</h5>
+          <div class="d-flex justify-content-center justify-content-md-start">
+            <a href="#" class="me-3"><i class="bi bi-github fs-3 footer-icon"></i></a>
+            <a href="#"><i class="bi bi-whatsapp fs-3 footer-icon"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>

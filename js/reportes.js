@@ -167,6 +167,7 @@ function generarReporteAsistencia() {
   });
 }
 
+//Reporte de apoyo estudiantil
 function generarReporteApoyo() {
   const grupoIndex = parseInt(document.getElementById("grupoReporte").value);
   const grupo = data[grupoIndex];

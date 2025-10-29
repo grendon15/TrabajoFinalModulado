@@ -59,12 +59,12 @@ function guardarEstudiante(e) {
   const nombre = document.getElementById("nombreEstudiante").value.trim();
   const apoyoEstudiantil = document.getElementById("apoyoEstudiantil").value;
   const editIndex = parseInt(document.getElementById("editEstudianteIndex").value);
-
+  // Validación de campos - Alertas para completat todos los datos
   if (!identificacion || !nombre || !apoyoEstudiantil) {
     Swal.fire({ icon: "error", title: "Oops...", text: "Debes completar todos los campos" });
     return;
   }
-
+  //Condiciomal para evitar duplicados al editar estudiante
   if (editIndex === -1) {
     const existe = data[grupoActual].estudiantes.some(est => est.identificacion === identificacion);
     if (existe) {
@@ -84,6 +84,7 @@ function guardarEstudiante(e) {
   document.getElementById("editEstudianteIndex").value = -1;
   mostrarListaEstudiantes();
   
+  //Mensaje de éxito para guardado de estudiante
   Swal.fire({ title: "Guardado", text: "Estudiante guardado correctamente", icon: "success" });
 }
 
@@ -96,6 +97,7 @@ function editarEstudiante(idx) {
   document.getElementById("formEstudiantesTitulo").textContent = "Editar Estudiante";
 }
 
+//Alerta de eliminación de estudiante
 function eliminarEstudiante(idx) {
   Swal.fire({
     title: "¿Estás seguro?",

@@ -13,6 +13,7 @@ function mostrarTablaNotas() {
   const grupo = data[grupoActual];
   const materia = data[grupoActual].materias[materiaActual];
   
+  // Validar si hay estudiantes sino muestra mensaje que no hay
   if (grupo.estudiantes.length === 0) {
     contenedor.innerHTML = `
       <div class="alert alert-info">
@@ -119,7 +120,7 @@ function guardarNotasEstudiante() {
     }
   });
   
-  // Asegurar que exista el array de notas
+  // Asegurar que exista el array de notas - Alertas
   if (!materia.notas) {
     materia.notas = [];
   }
@@ -135,7 +136,7 @@ function guardarNotasEstudiante() {
         notas: nuevasNotas
       });
     }
-    
+    //Alerta para cuando se guardan las notas
     Swal.fire({
       title: "Guardado",
       text: "Notas guardadas correctamente",
@@ -146,7 +147,7 @@ function guardarNotasEstudiante() {
     if (indexExistente >= 0) {
       materia.notas.splice(indexExistente, 1);
     }
-    
+    //alerta para cuando se eliminan todas las notas
     Swal.fire({
       title: "Eliminado",
       text: "Todas las notas han sido eliminadas",
